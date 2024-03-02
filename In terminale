@@ -1,0 +1,22 @@
+#set up a virtual environement 
+python3 -m venv env
+#activate the virtual env
+source env/bin/activate
+
+#if there is an error quit() then enter /Applications/Python\ 3.11/Install\ Certificates.command
+
+#after pip install beautifulsoup one line at a time 
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
+page = urlopen("https://weimergeeks.com/examples/scraping/example1.html")
+soup = BeautifulSoup(page, "html.parser")
+print(soup.h1)
+
+#caser l'élément dans un titre 
+heading = soup.h1
+print(heading.text)
+
+#extraire le texte d'une liste 
+city_list = soup.find_all( "td", class_="city" )
+for city in city_list:
+    print( city.get_text() )
