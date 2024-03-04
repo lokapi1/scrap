@@ -38,3 +38,15 @@ for i in range(1, 6):
     cells = rows[i].find_all('td')
     title = cells[1].text
     print(title)
+
+#sur les 5 premières lignes du table, montrer les cells de colonnes 1, 2 et 6
+for i in range(1, 6):
+    cells = rows[i].find_all('td')
+    print(cells[0].text, cells[1].text, cells[7].text)
+
+years = []
+start = 2019
+for i in range(0, 10):
+    years.append(start - i)
+#avant de print, fermer les ... (faire enter)
+print(years)
