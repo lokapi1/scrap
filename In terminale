@@ -44,9 +44,15 @@ for i in range(1, 6):
     cells = rows[i].find_all('td')
     print(cells[0].text, cells[1].text, cells[7].text)
 
+#creer une liste décroissante en partant en 2019
 years = []
 start = 2019
 for i in range(0, 10):
     years.append(start - i)
 #avant de print, fermer les ... (faire enter)
 print(years)
+
+# create base url
+base_url = 'https://www.boxofficemojo.com/year/'
+#rajouter une année (présente dans la liste créée prcédemment) pour l'inclure à la fin de la base_url 
+print( base_url + str(years[0]) + '/')
