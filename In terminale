@@ -20,3 +20,15 @@ print(heading.text)
 city_list = soup.find_all( "td", class_="city" )
 for city in city_list:
     print( city.get_text() )
+
+#after pip install beautifulsoup + requests --> go to python environnement (python3) and...
+from bs4 import BeautifulSoup
+import requests
+url = 'https://www.boxofficemojo.com/year/2018/'
+page = requests.get(url)
+soup = BeautifulSoup(page.text, 'html.parser')
+table = soup.find( 'table' )
+
+# get all the rows from that one table
+rows = table.find_all('tr')
+print(rows[1])
