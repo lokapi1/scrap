@@ -108,3 +108,30 @@ def capture_urls(filename, soup):
 
 # call the function et fait apparaître myfile.txt
 capture_urls(filename, soup)
+
+#Faire du scrapping sur plusieurs pages wiki 
+link_list = ['/wiki/Animal-Crossing',
+    '/wiki/Tom_Nook',
+    '/wiki/Mr._Resetti']
+
+def get_info(page_url):
+    page = requests.get('https://en.wikipedia.org' + page_url)
+    soup = BeautifulSoup(page.text, 'html.parser')
+
+    try:
+        #scrapper le titre de chaque page 
+        print(soup.h1.get_text())
+        #afficher les 280 premiers characters de cet page
+        paragraphs = soup.find(id='mw-content-text').find_all('p')
+        for p in paragraphs:
+            # si le parapgraphe n'a pas d'attribut (comme une classe ou id ou style), c'est donc un texte qui nous intéresse
+            if not p.attrs:
+                print( p.text[0:280] )
+                break
+        print() # blank line
+    except:
+        print(page_url + ' is missing something!')
+
+# call the function for each URL in the list
+for link in link_list:
+    get_info(link)
